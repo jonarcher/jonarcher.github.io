@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contract Whist for Three Players</title>
+<meta name="description" content="A plain-English guide to the rules of three-player contract whist, and to working out what to bid.">
+<style>
+  :root {
+    --bg: #fdfcf9;
+    --fg: #222;
+    --muted: #666;
+    --rule: #ddd8cc;
+    --accent: #1b2a4a;
+    --note-bg: #f1efe6;
+    --red: #b3261e;
+    --panel-bg: #f8f6ef;
+    --chip-bg: #ffffff;
+    --count-bg: #f8e9dc;
+    --count-fg: #8a4a22;
+    --bid-bg: #e0e8f7;
+    --bid-fg: #1b2a4a;
+    --decide-bg: #dde7fb;
+    --decide-fg: #1f3a8a;
+    --decide-bd: #b9cdf3;
+    --font-body: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-head: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #181a18;
+      --fg: #e6e4dc;
+      --muted: #9a9a92;
+      --rule: #34372f;
+      --accent: #9db4e8;
+      --note-bg: #232621;
+      --red: #ff7b72;
+      --panel-bg: #1e211e;
+      --chip-bg: #2a2d28;
+      --count-bg: #3a2c22;
+      --count-fg: #f0b58a;
+      --bid-bg: #25304a;
+      --bid-fg: #b9ccf5;
+      --decide-bg: #212b45;
+      --decide-fg: #b9ccf5;
+      --decide-bd: #34436b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 18px/1.6 var(--font-body);
+  }
+  main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+  h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.25; }
+  h1 { font-size: 2.2rem; margin: 0 0 .25rem; color: var(--accent); }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 .75rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--accent); }
+  h3 { font-size: 1.2rem; margin: 2rem 0 .5rem; }
+  h4 { font-size: 1.05rem; margin: 1.5rem 0 .4rem; }
+  .subtitle { color: var(--muted); font-size: 1.15rem; margin: 0 0 2rem; }
+  p, ul, ol, dl { margin: 0 0 1rem; }
+  li { margin-bottom: .35rem; }
+  dt { font-weight: bold; margin-top: .9rem; }
+  dd { margin: 0; }
+  .red { color: var(--red); }
+  .note {
+    background: var(--note-bg);
+    border-left: 4px solid var(--accent);
+    padding: .75rem 1rem;
+    margin: 1.25rem 0;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: .5rem .6rem; border-bottom: 1px solid var(--rule); }
+  th { font-family: var(--font-head); border-bottom: 2px solid var(--accent); }
+  td:first-child { white-space: nowrap; }
+  .hand-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 1rem 1.1rem 1.1rem;
+    margin: 1.5rem 0;
+  }
+  .hand-card h4 { margin: 0 0 .75rem; font-size: 1.1rem; color: var(--accent); }
+  .hand-card p { margin: 0; }
+  .cards { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+  .chip {
+    background: var(--chip-bg);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: .3rem .7rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    word-spacing: .35em;
+  }
+  .tiles { display: flex; gap: .6rem; margin-bottom: .75rem; }
+  .tile { border-radius: 10px; padding: .7rem .9rem; }
+  .tile.count { background: var(--count-bg); color: var(--count-fg); flex: 1 1 auto; display: flex; gap: .9rem; align-items: center; }
+  .tile.bid { background: var(--bid-bg); color: var(--bid-fg); flex: 0 0 5.5rem; text-align: center; }
+  .tile .num { display: block; font: 700 2rem/1.1 var(--font-head); }
+  .tile .label { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; opacity: .85; }
+  .tile .why { font-size: .92rem; line-height: 1.45; }
+  .tile .total { flex: 0 0 auto; text-align: center; min-width: 3.5rem; }
+  .decision {
+    background: var(--decide-bg);
+    color: var(--decide-fg);
+    border: 1px solid var(--decide-bd);
+    border-radius: 10px;
+    padding: .7rem .9rem;
+    font-size: .98rem;
+  }
+  @media (max-width: 30rem) {
+    .tiles { flex-direction: column; }
+    .tile.bid { flex-basis: auto; }
+  }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+  footer p { margin-bottom: .4rem; }
+  @media (max-width: 30rem) {
+    body { font-size: 17px; }
+    h1 { font-size: 1.8rem; }
+    td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Contract Whist for Three Players</h1>
+<p class="subtitle">A plain-English guide to the rules, and to working out what to bid</p>
+
+<h2>The idea</h2>
+<p>Each round, you look at your cards and predict how many “tricks” you’ll win. You score points for every trick you win, plus a big bonus if your prediction was exactly right. Winning more than you predicted counts as a miss.</p>
+
+<h2>What you need</h2>
+<p>A standard 52-card deck. Aces are the highest card, then king, queen, jack, 10, down to 2. A suit is one of the four groups of cards: hearts (<span class="red">♥</span>), diamonds (<span class="red">♦</span>), clubs (♣) and spades (♠).</p>
+
+<h2>The words you’ll hear</h2>
+<dl>
+  <dt>Trick</dt>
+  <dd>One mini-round of play. Each player puts down one card, face up, and the highest card wins. The winner collects the three cards and keeps them in a pile in front of them. “Taking a trick” means winning one of these.</dd>
+  <dt>Lead</dt>
+  <dd>To play the first card of a trick. The suit of that card is the suit everyone else has to match if they can.</dd>
+  <dt>Follow suit</dt>
+  <dd>If the leader plays a club, you must play a club if you have one. You can only play something else if you have no clubs.</dd>
+  <dt>Trump</dt>
+  <dd>One suit is picked each round as the special suit. A trump card beats any card from any other suit. Even a 2 of the trump suit beats an ace of a different suit.</dd>
+  <dt>Deal</dt>
+  <dd>One full round of the game, from handing out the cards to counting the tricks. This game has 13 deals. The dealer is the person handing out the cards that round.</dd>
+  <dt>Stock</dt>
+  <dd>The cards left over after dealing. Despite the name, you never draw from it or play any of its cards. In other card games the stock is a pile you draw from, but here it is just the leftover cards. Its only job is to supply the one card that is turned over to decide trump. The rest stay face down and are never looked at.</dd>
+  <dt>Bid</dt>
+  <dd>Your prediction, said out loud before play starts, of how many tricks you’ll take. Saying “three” means “I think I’ll win exactly three tricks.” You can also say “none”, meaning you think you’ll win no tricks at all.</dd>
+  <dt>Eldest hand</dt>
+  <dd>The player to the dealer’s left. They bid first and lead the first trick of the round.</dd>
+</dl>
+
+<h2>The 13 deals</h2>
+<p>The number of cards each player gets changes every round. Deal 1 is 7 cards each. Each deal after that has one fewer card than the one before, until deal 7, where everyone gets just 1 card. Then it climbs again: 2 cards in deal 8, 3 in deal 9, and so on back up to 7 cards in deal 13. The game ends after deal 13.</p>
+<p>The number of cards each player holds is also the number of tricks in that round. We’ll walk through deal 1, so everyone holds 7 cards and there are 7 tricks.</p>
+
+<h2>Walking through the first deal</h2>
+
+<h3>1. Choosing the first dealer</h3>
+<p>Deal cards out one at a time. The first player to receive a jack becomes the first dealer. In our example, Player 3 is the dealer.</p>
+
+<h3>2. Dealing</h3>
+<p>Player 3 shuffles, then deals one card at a time, clockwise, starting with the player to their left (Player 1), until everyone has 7 cards. That uses 21 of the 52 cards. The remaining 31 cards form the stock: put them face down in the middle of the table. Nobody will draw from this pile (see the next step for the one thing it is used for).</p>
+
+<h3>3. Turning the trump card</h3>
+<p>The dealer takes the top card of the stock and turns it face up. Its suit is trump for this round. Say it’s the <span class="red">9♦</span>. Diamonds are now trump.</p>
+<p>What do you do with that card? Nothing, it isn’t part of anyone’s hand. The page this guide is based on says only that it’s turned over to set trump and doesn’t say where to put it. The sensible approach is to leave it face up on top of the stock as a reminder of the trump suit. It never goes into anyone’s hand and is never played.</p>
+<p>This is the only time the stock is used. The other 30 cards in it stay face down and nobody ever sees them. Because the turned-up card is out of play for the round, nobody holds it, so it can’t beat anyone.</p>
+
+<h3>4. Bidding</h3>
+<p>Starting with Player 1 and going clockwise, everyone says how many of the 7 tricks they expect to win. Player 3, the dealer, bids last. (How to decide what to bid is covered in detail in Part 2.)</p>
+<ul>
+  <li>Player 1 looks at their hand: some diamonds and a couple of aces. They bid 3.</li>
+  <li>Player 2 has weaker cards. They bid 2.</li>
+  <li>The bids so far total 5.</li>
+</ul>
+<p><strong>The dealer’s restriction (the “hook”):</strong> the dealer may not bid a number that makes all the bids add up to exactly 7, the number of tricks. Otherwise every player could be right at once, and the game is designed so at least one person must miss.</p>
+<p>Here, 3 + 2 = 5, so Player 3 can’t bid 2 (that would make 7). They can bid 0, 1, 3, 4, 5, 6 or 7. Player 3 bids 1, making the total 6.</p>
+<p>Someone should write down each player’s bid so you can check them at the end.</p>
+
+<h3>5. Playing the tricks</h3>
+<p>Player 1 (to the dealer’s left) leads the first trick with any card from their hand. Going clockwise, each other player plays one card. The rules are:</p>
+<ul>
+  <li>If you have a card in the suit that was led, you must play one.</li>
+  <li>If you have none, you can play whatever you like. You can play a trump card to try to win the trick, or play a different card you want to get rid of (this is called “discarding”).</li>
+</ul>
+<p>Who wins the trick:</p>
+<ul>
+  <li>If anyone played a trump, the highest trump wins.</li>
+  <li>If no trumps were played, the highest card in the suit that was led wins.</li>
+</ul>
+
+<h4>Example, trick 1 (diamonds are trump)</h4>
+<ul>
+  <li>Player 1 leads the 8♣.</li>
+  <li>Player 2 has clubs and plays the J♣.</li>
+  <li>Player 3 has no clubs, so plays the <span class="red">3♦</span>, a trump.</li>
+  <li>Player 3 wins the trick, even though a 3 is a tiny number, because trump beats clubs.</li>
+</ul>
+<p>Player 3 collects those three cards and leads the next trick. Whoever wins each trick leads the next.</p>
+
+<h4>Example, trick 2 (diamonds are trump)</h4>
+<ul>
+  <li>Player 3 leads the 6♠.</li>
+  <li>Player 1 plays the Q♠.</li>
+  <li>Player 2 plays the 10♠.</li>
+  <li>Nobody played a trump, so the highest spade wins. Player 1 takes the trick and leads the next one.</li>
+</ul>
+<p>Play continues until all 7 tricks are done and everyone’s hand is empty.</p>
+
+<h3>6. Scoring the round</h3>
+<p>Count how many tricks each player won. Every player gets 1 point per trick won, whether or not they were right. A player whose count exactly matches their bid also gets a 10-point bonus.</p>
+<p>Say the final counts are:</p>
+<ul>
+  <li>Player 1 bid 3 and won 3. Score: 3 + 10 = 13 points.</li>
+  <li>Player 2 bid 2 and won 3. Score: 3 points, no bonus, because 3 is not 2.</li>
+  <li>Player 3 bid 1 and won 1. Score: 1 + 10 = 11 points.</li>
+</ul>
+<p>The tricks add up to 7, as they must (3 + 3 + 1). A bid of “none” that works earns the 10-point bonus too, even though you won no tricks.</p>
+
+<h3>7. Next deal</h3>
+<p>The dealer’s job passes to the next player clockwise. The page doesn’t state this directly, but it’s the usual way. In our example, Player 1 deals next.</p>
+<p>Every deal starts fresh from the full deck. Gather up all 52 cards: the cards each player won in tricks, the stock, and the turned-up trump card. The page doesn’t spell this out, but it’s how the game works, since each deal is self-contained. Shuffle them all together and deal the new number of cards (6 each for deal 2). The stock gets rebuilt from whatever is left over, so the cards in it are different every time. The player to the new dealer’s left bids and leads first.</p>
+
+<h3>Winning</h3>
+<p>After the 13th deal, add up each player’s points from all the rounds. The highest total wins.</p>
+
+<h2>Part 2: How to decide your bid</h2>
+
+<div class="note">
+  <p><strong>A note on sources.</strong> The Wikipedia article this guide is based on explains the rules but gives no bidding advice. Everything in this part is general trick-taking know-how, offered as rules of thumb to get you started. You’ll build better instincts after a few games, and it’s normal to miss your bid often at first.</p>
+</div>
+
+<h3>The goal: count your likely winners</h3>
+<p>Your bid is an estimate. Look at your hand and ask: which of these cards are likely to win a trick? Add them up and that’s your bid.</p>
+<p>High cards matter, but not all high cards are equal. What matters is how likely a card is to be beaten. A trump is much harder to beat than a high card from another suit, and a long run of trumps matters more than one lonely king.</p>
+
+<h3>What makes a card win tricks</h3>
+<ol>
+  <li><strong>Trump cards are your best cards.</strong> Any trump beats any card from another suit, so the ace and king of trump are very likely to win. Lower trumps are useful too, because they win whenever a player has no cards in the suit that was led and you trump in over their discard.</li>
+  <li><strong>Aces in other suits are good, but not certain.</strong> Any suit that isn’t trump is called a side suit. An ace is the highest card in its suit, so no one can beat it with a card of the same suit. The only danger is a player who has no cards of that suit and plays a trump instead.</li>
+  <li><strong>Kings in side suits are a gamble.</strong> A king wins only if the ace of that suit isn’t played, or has already gone by. That’s a maybe, not a sure thing.</li>
+  <li><strong>Low cards in side suits almost never win.</strong> A 7 of clubs will only take a trick if everyone else happens to have even lower clubs. Don’t count on it.</li>
+</ol>
+
+<div class="note">
+  <p><strong>A useful fact about the turned-up trump card.</strong> It stays out of the game for the whole round, so nobody holds it. If the turned card is the ace of trump, then nobody has it, and the king of trump becomes the highest trump that can be played. If you hold the king in that situation, it is as good as an ace.</p>
+</div>
+
+<h3>A quick counting guide</h3>
+<p>Go through your hand and add up whole and half tricks using this table. It’s a starting point, and the next section covers when to nudge the total up or down.</p>
+<table>
+  <thead>
+    <tr><th>Card</th><th>Count it as</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ace of trump</td><td>1 trick</td><td>Nothing can beat it.</td></tr>
+    <tr><td>King of trump</td><td>1 trick</td><td>Only the ace of trump beats it.</td></tr>
+    <tr><td>Any other trump</td><td>½ trick each</td><td>Count these only if you hold three or more trumps in total. With just one or two trumps, count a queen or jack as ½ and lower ones as 0.</td></tr>
+    <tr><td>Ace in a side suit</td><td>1 trick</td><td>Safe unless someone with none of that suit trumps it.</td></tr>
+    <tr><td>King in a side suit</td><td>½ trick</td><td>Wins only if the ace doesn’t get in its way.</td></tr>
+    <tr><td>Everything else</td><td>0</td><td>Queens, jacks and low cards in side suits rarely win.</td></tr>
+  </tbody>
+</table>
+
+<h3>Adjusting the count</h3>
+<p>The table gives you a number like 2½ or 3½. Here is how to turn it into a bid.</p>
+<ul>
+  <li><strong>Long trump holding: lean up.</strong> On average you’ll be dealt about a quarter of your cards in each suit, so about 2 trumps in a 7-card hand. If you hold 4 or 5, you have most of the trumps in play, and the other players will run out of them quickly. Your lower trumps become winners once the high ones are gone.</li>
+  <li><strong>Short side suits: lean up if you also have trumps.</strong> A void means having no cards at all in a suit. A short suit means having only one or two. When someone leads a suit you’re void in, you may play a trump instead and win the trick. This only helps if you have a trump to play, so short suits with no trumps are not an advantage.</li>
+  <li><strong>When you’re torn between two numbers, lean lower.</strong> It is usually easier to steer away from a trick you don’t want, by playing a low card, than it is to find a trick you were counting on. Lean up only when you have a specific reason, such as the two points above.</li>
+  <li><strong>Zero is a real bid.</strong> A hand with no trumps and no card above about a 9, with low cards in several suits, is a good candidate for 0. A successful zero earns the same 10-point bonus as any other exact bid.</li>
+  <li><strong>Big hands vs. small hands.</strong> In a 7-card deal you will often be forced to follow suit, so a high side-suit card you didn’t count on can win a trick you don’t want. In the one-card deals, the question is simple: is my single card a trump or an ace? If yes, bid 1. If not, bid 0.</li>
+</ul>
+
+<h3>Four example hands</h3>
+<p>In each example it’s deal 1 (7 cards each, 7 tricks) and diamonds are trump, because the <span class="red">9♦</span> was turned over from the stock. That means nobody holds the <span class="red">9♦</span>.</p>
+
+<section class="hand-card">
+  <h4>Hand 1: strong trumps and an ace</h4>
+  <div class="cards" aria-label="Your cards"><span class="chip"><span class="red">A♦</span> <span class="red">K♦</span> <span class="red">7♦</span>&emsp;A♠&emsp;9♣ 4♣&emsp;<span class="red">J♥</span></span></div>
+  <div class="tiles">
+    <div class="tile count"><div class="total"><span class="num">3½</span><span class="label">count</span></div><p class="why"><span class="red">A♦</span> = 1, <span class="red">K♦</span> = 1, <span class="red">7♦</span> = ½ (you hold three trumps), A♠ = 1. Everything else = 0.</p></div>
+    <div class="tile bid"><span class="num">4</span><span class="label">bid</span></div>
+  </div>
+  <p class="decision"><strong>Decision.</strong> That’s between 3 and 4. You have two short side suits (two clubs and one heart) and three trumps to play when those suits are led, which is a reason to lean up. Bid 4. Bidding 3 would also be reasonable. There isn’t one right answer.</p>
+</section>
+
+<section class="hand-card">
+  <h4>Hand 2: a hand built for zero</h4>
+  <div class="cards" aria-label="Your cards"><span class="chip">9♠ 6♠ 2♠&emsp;<span class="red">8♥</span> <span class="red">3♥</span>&emsp;7♣ 5♣</span></div>
+  <div class="tiles">
+    <div class="tile count"><div class="total"><span class="num">0</span><span class="label">count</span></div><p class="why">No trumps, no aces, no kings.</p></div>
+    <div class="tile bid"><span class="num">0</span><span class="label">bid</span></div>
+  </div>
+  <p class="decision"><strong>Decision.</strong> Bid 0. In every suit you hold, you have a low card to follow with, and if diamonds are led you can discard anything you like. Your highest card is only a 9. The risk with a zero bid is being forced to follow suit with a high card, and this hand barely has any.</p>
+</section>
+
+<section class="hand-card">
+  <h4>Hand 3: lots of trumps, no ace or king of trump</h4>
+  <div class="cards" aria-label="Your cards"><span class="chip"><span class="red">Q♦</span> <span class="red">J♦</span> <span class="red">10♦</span> <span class="red">8♦</span> <span class="red">3♦</span>&emsp;K♠&emsp;<span class="red">4♥</span></span></div>
+  <div class="tiles">
+    <div class="tile count"><div class="total"><span class="num">3</span><span class="label">count</span></div><p class="why">The five other trumps are ½ each = 2½. K♠ = ½.</p></div>
+    <div class="tile bid"><span class="num">4</span><span class="label">bid</span></div>
+  </div>
+  <p class="decision"><strong>Decision.</strong> The simple count undersells this hand. There are 13 diamonds. One is the face-up <span class="red">9♦</span> and you hold five, so 7 are hidden somewhere. The other two players hold only 14 cards between them, out of the 44 cards you can’t see, so on average they have only about two of those seven trumps. You hold most of the trumps in play. Bid 4.</p>
+</section>
+
+<section class="hand-card">
+  <h4>Hand 4: two kings and little else</h4>
+  <div class="cards" aria-label="Your cards"><span class="chip"><span class="red">K♥</span> <span class="red">5♥</span>&emsp;K♠&emsp;Q♣ 3♣&emsp;<span class="red">6♦</span> <span class="red">2♦</span></span></div>
+  <div class="tiles">
+    <div class="tile count"><div class="total"><span class="num">1</span><span class="label">count</span></div><p class="why"><span class="red">K♥</span> = ½, K♠ = ½. You hold only two trumps, so they count as 0, and the queen is 0.</p></div>
+    <div class="tile bid"><span class="num">1</span><span class="label">bid</span></div>
+  </div>
+  <p class="decision"><strong>Decision.</strong> Bid 1. A king can be captured by the ace of its own suit, so each is only worth about half a trick. Two halves make one.</p>
+</section>
+
+<h3>Using what the other players have bid</h3>
+<p>You bid after the players to your right, so their bids give you clues. Compare the total so far to the number of tricks available:</p>
+<ul>
+  <li><strong>Bids add up to well under the number of tricks.</strong> There are tricks that nobody asked for, and they have to land on someone. If your hand is borderline, lean up.</li>
+  <li><strong>Bids add up to well over the number of tricks.</strong> Everyone is chasing tricks and some will be disappointed. If your hand is borderline, lean down.</li>
+</ul>
+<p>Example: deal 1 has 7 tricks. Player 1 bids 1 and Player 2 bids 1. That’s only 2 of the 7, so 5 tricks have nobody’s name on them. If you’re Player 3 (the dealer) you cannot bid 5, because that would make the total exactly 7. Bidding 3 or 4 is quite possible with a decent hand, because the other two players have told you their hands are weak.</p>
+<p>These are clues, not rules. Players sometimes bid low on purpose or misjudge their hands.</p>
+
+<h3>Playing to hit your bid</h3>
+<p>A bid isn’t just a prediction you sit and wait on. During play you steer toward your number, and this is a big part of the fun. Remember that taking too many tricks is as bad as taking too few.</p>
+<p><strong>If you still need tricks:</strong> lead your strong cards early, such as aces and high trumps, before someone else can trump them or the ace gets played.</p>
+<p><strong>If you’ve already won your bid:</strong> now you want to lose every remaining trick. Follow suit with your lowest card of that suit, and when you can’t follow suit, discard your most dangerous high card instead of trumping.</p>
+<p>Example: you bid 2 and have already won 2 tricks, with 3 tricks left. Your remaining cards are K♣, 5♣ and <span class="red">8♥</span> (diamonds are trump). Someone leads a club: you must follow suit, so play the 5♣, not the king. Later someone leads a diamond and you have none: you can discard, so get rid of the K♣, the card most likely to win a trick by accident.</p>
+
+<h2>Cheat sheet: bidding in six steps</h2>
+<ol>
+  <li><strong>Check trump.</strong> Ace of trump = 1, king of trump = 1. Other trumps = ½ each, if you hold three or more.</li>
+  <li><strong>Add 1</strong> for each ace in another suit.</li>
+  <li><strong>Add ½</strong> for each king in another suit.</li>
+  <li><strong>Adjust.</strong> Lean up for a long trump holding, or short side suits plus a trump to play. Lean down if the bids so far are high. When torn, lean lower.</li>
+  <li><strong>Round and bid.</strong> If nothing in your hand looks likely to win, bid 0.</li>
+  <li><strong>Then steer.</strong> Once the tricks start, play to hit your number exactly: no more, no fewer.</li>
+</ol>
+
+<footer>
+  <p>Rules adapted from the “Oh hell” article on Wikipedia (the British contract whist variant, dealt 7–1–7).</p>
+  <p>Bidding advice is general strategy and is not from that article.</p>
+</footer>
+
+</main>
+</body>
+</html>
