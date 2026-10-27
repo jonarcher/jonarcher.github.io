@@ -1,0 +1,83 @@
+Rule 'revised'. Each bid tried against 6,000 random deals of the other hands.
+Earlier bidders' bids are matched when given. 'rule' marks the bid the rule gives.
+
+7 cards, hand 1: AD KD 7D AS 9C 4C JH  (trump D, you bid first)
+    bid 0: exactly right   0.0%   average score  4.37
+    bid 1: exactly right   0.0%   average score  4.43
+    bid 2: exactly right   2.4%   average score  4.75
+    bid 3: exactly right   9.2%   average score  5.28
+    bid 4: exactly right  44.9%   average score  8.99  <- rule  <- best
+    bid 5: exactly right  35.8%   average score  8.22
+    bid 6: exactly right  13.3%   average score  5.95
+    bid 7: exactly right   2.2%   average score  4.85
+
+7 cards, hand 2: 9S 6S 2S 8H 3H 7C 5C  (trump D, you bid first)
+    bid 0: exactly right  79.0%   average score  8.18  <- rule  <- best
+    bid 1: exactly right  37.0%   average score  4.22
+    bid 2: exactly right   9.6%   average score  1.52
+    bid 3: exactly right   1.6%   average score  0.70
+    bid 4: exactly right   0.2%   average score  0.58
+    bid 5: exactly right   0.0%   average score  0.55
+    bid 6: exactly right   0.0%   average score  0.55
+    bid 7: exactly right   0.0%   average score  0.55
+
+7 cards, hand 3: QD JD TD 8D 3D KS 4H  (trump D, you bid first)
+    bid 0: exactly right   0.0%   average score  4.55
+    bid 1: exactly right   0.0%   average score  4.95
+    bid 2: exactly right   0.1%   average score  4.97
+    bid 3: exactly right   2.7%   average score  5.25
+    bid 4: exactly right  23.0%   average score  7.30
+    bid 5: exactly right  45.4%   average score  9.52  <- rule  <- best
+    bid 6: exactly right  27.0%   average score  7.68
+    bid 7: exactly right   0.2%   average score  5.01
+
+7 cards, hand 4: KH 5H KS QC 3C 6D 2D  (trump D, you bid first)
+    bid 0: exactly right  10.6%   average score  3.30
+    bid 1: exactly right  23.7%   average score  4.73
+    bid 2: exactly right  44.0%   average score  6.85  <- best
+    bid 3: exactly right  41.1%   average score  6.74  <- rule
+    bid 4: exactly right  17.0%   average score  4.37
+    bid 5: exactly right   3.2%   average score  2.98
+    bid 6: exactly right   0.2%   average score  2.68
+    bid 7: exactly right   0.0%   average score  2.66
+
+3 cards, leading: 7D AS 2H  (trump D, you bid first)
+    bid 0: exactly right  23.7%   average score  3.38
+    bid 1: exactly right  46.6%   average score  5.99  <- rule  <- best
+    bid 2: exactly right  39.8%   average score  5.32
+    bid 3: exactly right   1.9%   average score  1.52
+
+3 cards, leading: KS 8C 3H  (trump D, you bid first)
+    bid 0: exactly right  49.2%   average score  5.58  <- rule  <- best
+    bid 1: exactly right  47.0%   average score  5.38
+    bid 2: exactly right  15.2%   average score  2.26
+    bid 3: exactly right   0.9%   average score  0.74
+
+2 cards, leading: 5D AH  (trump D, you bid first)
+    bid 0: exactly right  13.6%   average score  2.62
+    bid 1: exactly right  44.0%   average score  5.70  <- rule  <- best
+    bid 2: exactly right  39.4%   average score  5.20
+
+2 cards, leading: KH 4C  (trump D, you bid first)
+    bid 0: exactly right  68.0%   average score  7.21  <- rule  <- best
+    bid 1: exactly right  40.8%   average score  4.76
+    bid 2: exactly right  11.5%   average score  1.70
+
+2 cards, leading: AH 4C  (trump D, you bid first)
+    bid 0: exactly right  66.2%   average score  7.05  <- rule  <- best
+    bid 1: exactly right  44.7%   average score  5.19
+    bid 2: exactly right  12.4%   average score  1.85
+
+2 cards, 2nd to bid: AH 4C  (trump D, you bid after [0])
+    bid 0: exactly right  63.2%   average score  6.81  <- rule  <- best
+    bid 1: exactly right  37.0%   average score  4.30
+    bid 2: exactly right  10.7%   average score  1.64
+
+1 card, leading: AC  (trump D, you bid first)
+    bid 0: exactly right  43.0%   average score  4.87
+    bid 1: exactly right  57.0%   average score  6.27  <- rule  <- best
+
+1 card, 2nd to bid: AC  (trump D, you bid after [0])
+    bid 0: exactly right  75.2%   average score  7.77  <- rule  <- best
+    bid 1: exactly right  24.8%   average score  2.73
+

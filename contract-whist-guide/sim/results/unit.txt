@@ -1,0 +1,15 @@
+One-card deals (2,000,000 deals). Chance a card wins its trick.
+
+card                lead     2nd     3rd
+ace of trump      100.0%  100.0%  100.0%
+king of trump      96.3%   96.5%   96.3%
+2 of trump         60.9%   60.6%   60.2%
+ace of side        57.0%   18.2%   18.2%
+king of side       54.2%   16.1%   16.4%
+queen of side      51.6%   14.3%   14.3%
+2 of side          26.4%    0.0%    0.0%
+
+Closed form:
+  king of trump   0.963  loses only to the ace of trump, and only if it wasn't the card turned up
+  2 of trump      0.605  wins if neither opponent holds one of the other 11 trumps
+  ace of side     0.574  leading: wins if neither opponent holds one of the 12 trumps

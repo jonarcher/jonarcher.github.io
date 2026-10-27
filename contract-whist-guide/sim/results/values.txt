@@ -1,0 +1,128 @@
+Chance a card wins a trick when every player tries to win every trick (400,000 deals per hand size).
+
+1-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          78.7%   79.0%   79.3%
+  trump 5-2 (1-2 trumps)           65.0%   65.0%   65.3%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             89.1%   89.0%   89.1%
+  trump K                          96.3%   96.1%   96.3%
+  trump Q (1-2 trumps)             92.6%   93.2%   93.2%
+  side A                           57.4%   18.3%   18.2%
+  side J or lower                  37.2%    5.8%    5.7%
+  side K (1 cards in suit)         54.1%   16.5%   16.2%
+  side Q (1 cards in suit)         51.9%   14.3%   13.8%
+
+2-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          81.7%   76.8%   84.2%
+  trump 5-2 (1-2 trumps)           74.7%   64.9%   74.7%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             89.4%   86.7%   91.3%
+  trump K                          96.7%   94.7%   96.8%
+  trump Q (1-2 trumps)             92.4%   90.7%   93.9%
+  side A                           48.1%   36.5%   36.7%
+  side J or lower                  18.3%   10.4%   11.1%
+  side K (1 cards in suit)         43.5%   33.2%   34.2%
+  side K (2 cards in suit)         38.7%   26.0%   23.6%
+  side Q (1 cards in suit)         38.1%   28.1%   29.4%
+  side Q (2 cards in suit)         33.5%   19.9%   19.5%
+
+3-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          81.7%   76.8%   81.8%
+  trump 10-6 (3+ trumps)           84.9%   81.3%   85.9%
+  trump 5-2 (1-2 trumps)           74.3%   66.8%   74.3%
+  trump 5-2 (3+ trumps)            94.4%   75.1%   85.7%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             89.7%   85.6%   89.3%
+  trump J (3+ trumps)              81.6%   85.7%   89.4%
+  trump K                          96.5%   94.1%   95.6%
+  trump Q (1-2 trumps)             93.1%   89.3%   92.3%
+  trump Q (3+ trumps)              85.2%   91.9%   93.4%
+  side A                           50.2%   47.0%   47.4%
+  side J or lower                  13.7%   10.7%   11.1%
+  side K (1 cards in suit)         43.2%   41.7%   41.8%
+  side K (2 cards in suit)         38.7%   37.4%   37.6%
+  side K (3+ cards in suit)        32.7%   30.4%   27.6%
+  side Q (1 cards in suit)         35.7%   33.7%   34.4%
+  side Q (2 cards in suit)         31.2%   29.5%   31.8%
+  side Q (3+ cards in suit)        25.9%   22.6%   22.6%
+
+4-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          78.9%   74.5%   78.3%
+  trump 10-6 (3+ trumps)           84.8%   81.7%   84.9%
+  trump 5-2 (1-2 trumps)           71.7%   65.6%   71.1%
+  trump 5-2 (3+ trumps)            86.0%   76.0%   85.0%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             87.2%   83.4%   86.4%
+  trump J (3+ trumps)              86.9%   88.2%   89.3%
+  trump K                          96.1%   93.6%   94.9%
+  trump Q (1-2 trumps)             91.6%   87.7%   90.1%
+  trump Q (3+ trumps)              90.0%   93.8%   93.2%
+  side A                           56.2%   55.0%   55.4%
+  side J or lower                  11.4%   10.7%   10.8%
+  side K (1 cards in suit)         47.1%   47.5%   47.7%
+  side K (2 cards in suit)         41.7%   45.6%   46.0%
+  side K (3+ cards in suit)        35.5%   37.3%   37.4%
+  side Q (1 cards in suit)         36.9%   36.6%   37.3%
+  side Q (2 cards in suit)         32.4%   36.3%   38.5%
+  side Q (3+ cards in suit)        25.6%   28.4%   29.8%
+
+5-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          75.5%   71.4%   74.2%
+  trump 10-6 (3+ trumps)           83.7%   80.9%   83.0%
+  trump 5-2 (1-2 trumps)           68.2%   62.8%   66.5%
+  trump 5-2 (3+ trumps)            82.3%   75.3%   81.6%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             84.8%   81.0%   83.2%
+  trump J (3+ trumps)              88.4%   88.3%   89.6%
+  trump K                          95.6%   93.3%   94.8%
+  trump Q (1-2 trumps)             89.5%   85.7%   87.7%
+  trump Q (3+ trumps)              92.4%   93.5%   93.5%
+  side A                           63.8%   62.4%   62.4%
+  side J or lower                  10.2%   10.4%   10.6%
+  side K (1 cards in suit)         51.3%   51.9%   51.9%
+  side K (2 cards in suit)         46.5%   52.3%   53.2%
+  side K (3+ cards in suit)        38.4%   44.1%   43.5%
+  side Q (1 cards in suit)         37.6%   38.2%   38.2%
+  side Q (2 cards in suit)         34.6%   40.8%   43.0%
+  side Q (3+ cards in suit)        27.5%   32.3%   34.1%
+
+6-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          72.0%   67.9%   70.3%
+  trump 10-6 (3+ trumps)           81.9%   79.8%   80.9%
+  trump 5-2 (1-2 trumps)           64.0%   59.4%   62.2%
+  trump 5-2 (3+ trumps)            78.1%   73.0%   77.7%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             81.5%   78.2%   80.3%
+  trump J (3+ trumps)              88.4%   87.9%   88.1%
+  trump K                          95.4%   93.5%   94.7%
+  trump Q (1-2 trumps)             87.5%   83.5%   85.1%
+  trump Q (3+ trumps)              93.7%   93.4%   93.1%
+  side A                           71.1%   69.2%   69.2%
+  side J or lower                   9.4%   10.1%   10.3%
+  side K (1 cards in suit)         54.8%   55.1%   54.8%
+  side K (2 cards in suit)         50.0%   58.2%   59.8%
+  side K (3+ cards in suit)        42.0%   48.9%   49.2%
+  side Q (1 cards in suit)         37.6%   38.1%   38.5%
+  side Q (2 cards in suit)         35.9%   44.4%   46.9%
+  side Q (3+ cards in suit)        28.2%   36.3%   38.1%
+
+7-card hands          lead     2nd     3rd
+  trump 10-6 (1-2 trumps)          67.2%   64.0%   65.5%
+  trump 10-6 (3+ trumps)           80.0%   77.8%   78.7%
+  trump 5-2 (1-2 trumps)           59.2%   55.0%   57.1%
+  trump 5-2 (3+ trumps)            74.5%   70.0%   73.2%
+  trump A                         100.0%  100.0%  100.0%
+  trump J (1-2 trumps)             77.9%   75.1%   76.3%
+  trump J (3+ trumps)              88.3%   87.4%   87.6%
+  trump K                          95.3%   93.9%   94.9%
+  trump Q (1-2 trumps)             84.3%   81.4%   82.6%
+  trump Q (3+ trumps)              93.8%   93.4%   93.5%
+  side A                           77.7%   75.4%   75.1%
+  side J or lower                   9.0%   10.0%   10.1%
+  side K (1 cards in suit)         55.9%   55.5%   55.9%
+  side K (2 cards in suit)         53.1%   63.5%   65.6%
+  side K (3+ cards in suit)        44.6%   53.5%   54.6%
+  side Q (1 cards in suit)         36.6%   36.0%   36.9%
+  side Q (2 cards in suit)         37.6%   47.9%   50.5%
+  side Q (3+ cards in suit)        30.0%   39.4%   41.5%
+
